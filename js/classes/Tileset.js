@@ -12,7 +12,7 @@ function Tileset(url) {
 	this.image.src = "tilesets/" + url;
 }
 
-// Méthode de dessin du tile numéro "numero" dans le contexte 2D "context" aux coordonnées x et y
+// Méthode de dessin du tile numéro "numero" dans le contexte 2D "context" aux coordonnées xDestination et yDestination
 Tileset.prototype.dessinerTile = function(numero, context, xDestination, yDestination) {
 	var xSourceEnTiles = numero % this.largeur;
 	if(xSourceEnTiles == 0) xSourceEnTiles = this.largeur;

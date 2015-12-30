@@ -13,6 +13,9 @@ function Map(nom) {
 	var mapData = JSON.parse(mapJsonData);
 	this.tileset = new Tileset(mapData.tileset);
 	this.terrain = mapData.terrain;
+	
+	// Liste des personnages présents sur le terrain.
+	this.personnages = new Array();
 }
 
 // Pour récupérer la taille (en tiles) de la carte
@@ -23,6 +26,11 @@ Map.prototype.getLargeur = function() {
 	return this.terrain[0].length;
 }
 
+// Pour ajouter un personnage
+Map.prototype.addPersonnage = function(perso) {
+	this.personnages.push(perso);
+}
+
 Map.prototype.dessinerMap = function(context) {
 	for(var i = 0, l = this.terrain.length ; i < l ; i++) {
 		var ligne = this.terrain[i];
@@ -30,6 +38,11 @@ Map.prototype.dessinerMap = function(context) {
 		for(var j = 0, k = ligne.length ; j < k ; j++) {
 			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
 		}
+	}
+	
+	// Dessin des personnages
+	for(var i = 0, l = this.personnages.length ; i < l ; i++) {
+		this.personnages[i].dessinerPersonnage(context);
 	}
 }
 
